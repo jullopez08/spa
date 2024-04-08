@@ -1,36 +1,17 @@
-console.log("hola");
-const nombre: string = 'Julieth'
+// const  express = require('express')
+// require('dotenv').config()
 
-const saludar =(name: string)=>{
-    return `Hola ${name}!`
-}
+// const PORT =process.env.PORT || 3000
+// const server = express()
 
-console.log(saludar(nombre));
- 
-const calcular = (cantidad:number, precio:number):number=>{
-    return cantidad *precio
-}
-console.log(calcular(20,8));
-interface IAddress{
-    street: string,
-    city: string
-}
-interface IUser {
-    name: string,
-    age:number,
-    email:string,
-    active:boolean,
-    address: IAddress
-}
+// server.listen(PORT, ()=>{
+//     console.log(`Server lintening on PORT ${PORT}`);
+    
+// })
+import server from "./server";
+import { PORT } from "./config/envs";
 
-const usuario: IUser ={
-    name:'Julieth Lopez',
-    age: 23,
-    email: 'jperdomo@iegabo.edu.co',
-    active: true,
-    address: {
-        street: 'calle cualquiera',
-        city: 'pais'
-    }
-}
-console.log(usuario);
+server.listen(PORT, ()=>{
+    console.log(`Server listening on port ${PORT}`);
+    
+});
