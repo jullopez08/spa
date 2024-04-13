@@ -9,7 +9,7 @@ import { Router } from "express";
 import {
   getUsersController,
   getUsersIdController,
-  postUserResgisterController,
+  createUserController,
   postUserLoginController,
 } from "../controllers/usersController";
 
@@ -19,7 +19,7 @@ router.get("/", getUsersController);
 
 router.get("/:id", getUsersIdController);
 
-router.post("/register", postUserResgisterController);
+router.post("/register", createUserController);
 
 router.post("/login", postUserLoginController);
 
