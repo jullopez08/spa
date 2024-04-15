@@ -17,10 +17,10 @@ const router: Router = Router();
 
 router.get("/", getAptmentsCtroller);
 
-router.get("/appointment", getAptmentCtroller);
+router.get("/:id", getAptmentCtroller);
 
-router.post("/appointment/schedule", postAptmentScheduleCtroller);
+router.post("/schedule", postAptmentScheduleCtroller);
 
-router.put("/appointment/cancel", putAptmentCancelCtroller);
+router.put("/:id/cancel", putAptmentCancelCtroller);
 
 export default router;

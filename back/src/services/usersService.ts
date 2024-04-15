@@ -8,9 +8,9 @@
 
 import { AppDataSource } from "../config/data-source";
 import { User } from "../entities/User";
-import IUser from "../interfaces/IUser";
+import { createCredentials } from "./credentialService";
 
-const users: IUser[] = [];
+const users: User[] = [];
 
 export const getAllUser = async () => {
   const allUser = await AppDataSource.getRepository(User).find();
@@ -20,34 +20,29 @@ export const getAllUser = async () => {
     return allUser;
   }
 };
-export const getAllUserById = async (userId: number): Promise<IUser> => {
-  const buscaUser: IUser | undefined = users.find((user) => user.id === userId);
-  if (!buscaUser) throw Error("no se encuentra usuario");
-  return buscaUser;
+export const getAllUserById = async (id: number): Promise<User | null> => {
+  const user = await AppDataSource.getRepository(User).findOneBy({
+    id,
+  });
+  return user;
 };
-// export const createUser = async (
-//   users: Omit<IUser, "id" | "credentialsId">
-// ) => {
-//   const user = await AppDataSource.getRepository(User).create(users);
-//   const respuesta = await AppDataSource.getRepository(User).save(user);
-//   return respuesta;
-// };
-export async function createUser(user: Omit<IUser, "id" | "credentialsId">) {
+
+export async function createUser(user: Omit<User, "id" | "credentialsId">) {
   try {
-    // Verifica que el campo 'name' no esté vacío
-    if (!user.name) {
-      throw new Error('El campo "name" es obligatorio.');
-    }
-
     const userRepository = AppDataSource.getRepository(User);
+    const usersData = await userRepository.create(user);
 
-    // Crea una nueva instancia de User a partir de los datos proporcionados
-    const newUser = userRepository.create(user);
+    // Crea las credenciales para el nuevo usuario
+    const newCredentialId = await createCredentials(
+      user.username,
+      user.password
+    );
 
-    // Guarda el nuevo usuario en la base de datos
-    const savedUser = await userRepository.save(newUser);
+    usersData.credentialsId = newCredentialId;
+    const results = await userRepository.save(usersData);
 
-    return savedUser;
+    // Retorna el nuevo usuario creado
+    return results;
   } catch (error) {
     console.error("Error al crear el usuario:", error);
     throw error;

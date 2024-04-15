@@ -5,7 +5,7 @@ import appointmentRoutes from "./appointmentRouter";
 
 const router: Router = Router();
 
-router.use("/", userRoutes);
-router.use("/", appointmentRoutes);
+router.use("/users", userRoutes);
+router.use("/appointments", appointmentRoutes);
 
 export default router;
