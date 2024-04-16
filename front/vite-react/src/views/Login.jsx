@@ -1,42 +1,70 @@
-// views/Login.jsx
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const Login = () => {
-   const [formLData, setFormLData]= useState({
+  // Estado local para almacenar los datos del formulario
+  const [formData, setFormData] = useState({
     username: '',
     password: ''
-   })
+  });
 
-   const renderLogin = (e) =>{
-    const {name, value} = e.target;
-    setFormLData({
-      ...formLData,
+  // Estado local para almacenar el mensaje de error
+  const [error, setError] = useState('');
+
+  // Función para manejar cambios en los inputs del formulario
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
       [name]: value
-    })
-   }
-   const btnSubmit =(e) =>{
+    });
+  };
+
+  // Función para manejar el envío del formulario
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formLData);
-   }
+    try {
+      // Realizar la petición POST al servidor para el login
+      const response = await axios.post('http://localhost:3000/users/login', formData);
+      setError('Se ha iniciado seccion!'); // Mensaje de error si las credenciales son incorrectas
+      console.log(response.data); // Aquí puedes manejar la respuesta del servidor, como redireccionar al usuario a otra página
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      setError('¡Oops! Nombre de usuario o contraseña incorrectos.'); // Mensaje de error si las credenciales son incorrectas
+    }
+  };
+
   return (
     <div>
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={btnSubmit}>
+      <h1>Iniciar Sesión</h1>
+      {error && <p>{error}</p>} {/* Mostrar mensaje de error */}
+      <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">username</label>
-          <input type="text"
-          id='username' name='username'
-          value={formLData.username}
-          onChange={renderLogin} required/>
-          <label htmlFor="password">contraseña</label>
-          <input type="password" id='password' name='password' value={formLData.password} onChange={renderLogin} required />
+          <label htmlFor="username">Nombre de Usuario:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <button type='submit'>Iniciar seccion</button>
+        <div>
+          <label htmlFor="password">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit">Iniciar Sesión</button>
       </form>
-      
     </div>
   );
 }
 
-export default Login;
+export default Login;

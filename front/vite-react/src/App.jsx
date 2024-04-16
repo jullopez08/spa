@@ -14,7 +14,9 @@ function App() {
     <div>
       <h2></h2>
       {/* <Home/> */}
-      <MisTurnos/>
+      {/* <MisTurnos/> */}
+      {/* <Register/> */}
+      <Login/>
 
     </div>
   )

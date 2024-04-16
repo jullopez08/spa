@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Register = () => {
   // Estado local para almacenar los datos del formulario
   const [formData, setFormData] = useState({
-    id: 0,
     name: '',
     email: '',
     birthdate: '',
     nDni: '',
-    credentialsId: 0,
     username: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
+
+  // Estado local para almacenar el mensaje de éxito o error
+  const [message, setMessage] = useState('');
 
   // Función para manejar cambios en los inputs del formulario
   const handleChange = (e) => {
@@ -24,15 +25,22 @@ const Register = () => {
   };
 
   // Función para manejar el envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos del formulario al backend
-    console.log(formData);
+    try {
+      // Realizar la petición POST al servidor
+      const response = await axios.post('http://localhost:3000/users/register', formData);
+      setMessage('¡Registro exitoso!'); // Mensaje de éxito
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      setMessage('¡Oops! Ha ocurrido un error.'); // Mensaje de error
+    }
   };
 
   return (
     <div>
       <h1>Registro</h1>
+      {message && <p>{message}</p>} {/* Mostrar mensaje de éxito o error */}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Nombre:</label>
@@ -57,6 +65,39 @@ const Register = () => {
           />
         </div>
         <div>
+          <label htmlFor="birthdate">Fecha de Nacimiento:</label>
+          <input
+            type="date"
+            id="birthdate"
+            name="birthdate"
+            value={formData.birthdate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="nDni">Número de DNI:</label>
+          <input
+            type="text"
+            id="nDni"
+            name="nDni"
+            value={formData.nDni}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="username">Nombre de Usuario:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
           <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
@@ -67,21 +108,10 @@ const Register = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
         <button type="submit">Registrarse</button>
       </form>
     </div>
   );
 }
 
-export default Register;
+export default Register;
