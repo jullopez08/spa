@@ -8,6 +8,7 @@
 
 import { AppDataSource } from "../config/data-source";
 import { User } from "../entities/User";
+import IUser from "../interfaces/IUser";
 import { createCredentials } from "./credentialService";
 
 const users: User[] = [];
@@ -27,7 +28,7 @@ export const getAllUserById = async (id: number): Promise<User | null> => {
   return user;
 };
 
-export async function createUser(user: Omit<User, "id" | "credentialsId">) {
+export async function createUser(user: Omit<IUser, "id" | "credentialsId">) {
   try {
     const userRepository = AppDataSource.getRepository(User);
     const usersData = await userRepository.create(user);

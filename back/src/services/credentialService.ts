@@ -7,15 +7,13 @@ import { Credential } from "../entities/credential";
 
 // Implementar una función que recibirá username y password, y deberá chequear si el nombre de usuario existe entre los datos disponibles y, si es así, si el password es correcto. En caso de que la validación sea exitosa, deberá retornar el ID de las credenciales.
 
-const credentials: Credential[] = [];
-
 // Función para crear un nuevo conjunto de credenciales
 export const createCredentials = async (username: string, password: string) => {
   const crtialRepository = AppDataSource.getRepository(Credential);
   const cretialData = await crtialRepository.create({ username, password });
 
   const rsulCrt = await crtialRepository.save(cretialData);
-  return rsulCrt;
+  return rsulCrt.id;
 };
 // Función para validar las credenciales
 export const validarCredentials = async (

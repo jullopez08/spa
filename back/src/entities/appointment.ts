@@ -14,9 +14,12 @@ export class Appointment {
   @Column()
   time: string;
 
-  @ManyToOne(() => User, (user) => user.appointment)
-  userId: User[];
+  @Column()
+  userId: number;
 
   @Column({ type: "enum", enum: ["active", "cancelled"], default: "active" })
   status: "active" | "cancelled";
+
+  @ManyToOne(() => User, (user) => user.appointments) // Asegúrate de que la relación ManyToOne apunte a la entidad User
+  user: User;
 }

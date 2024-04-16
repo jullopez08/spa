@@ -1,0 +1,13 @@
+gestor de turnos para un Spa
+
+1.Los usuarios nuevos pueden registrarse
+    a. formulario de registro
+    b.enviarme un correo de validacion
+2. iniciar sesion
+    a. cerrar sesion
+3.agendar turnos en las fechas siguientes
+    a. eliminar turnos hasta un dia antes del turnos
+    b.agendar turnos en dias laborales
+    c.agendar en el horario laborales
+4. los usuarios pueden ver lo que ofrece el spa sin login
+

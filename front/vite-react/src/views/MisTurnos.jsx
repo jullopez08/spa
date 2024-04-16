@@ -5,9 +5,20 @@ import { useState, useEffect } from 'react'
 import Turno from '../components/Turno.jsx';
 
 const MisTurnos = () => {
-    const [turns, setTurns] = useState(myTurns);
-console.log(myTurns);
-   
+    const [turns, setTurns] = useState([]);
+    useEffect(() => {
+        const fetchTurns = async () => {
+          try {
+            const response = await axios.get('http://localhost:3000/appointments');
+            setTurns(response.data);
+            console.log(response.data);
+          } catch (error) {
+            console.error('Error al obtener los turnos:', error);
+          }
+        };
+    
+        fetchTurns();
+      }, []); 
 
   return (
     <div>
