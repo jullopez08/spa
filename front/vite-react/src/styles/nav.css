@@ -1,4 +1,10 @@
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #238269;
+    z-index: 1000;
     padding: 10px 20px; /* Espaciado interno */
   }
   

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 import "../styles/registro.css"; // Importa el archivo de estilos
 
 const Register = () => {
@@ -43,7 +44,8 @@ const Register = () => {
 
   return (
     <div className="register-form">
-      <h1 className="title">Registro</h1>
+      <Navbar />
+      <h2 className="title">Registro</h2>
       {message && <p className="message">{message}</p>}{" "}
       {/* Mostrar mensaje de éxito o error */}
       <form onSubmit={handleSubmit} className="form">
