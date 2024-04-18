@@ -4,7 +4,7 @@ import {
   getAllUserById,
   createUser,
 } from "../services/usersService";
-import { validarCredentials } from "../services/credentialService";
+import { validateCredentialsAndGetId } from "../services/credentialService";
 import { User } from "../entities/User";
 
 export const getUsersController = async (req: Request, res: Response) => {
@@ -39,7 +39,7 @@ export const postUserLoginController = async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     // Busca el usuario por su nombre de usuario
-    const crdencial = await validarCredentials(username, password);
+    const crdencial = await validateCredentialsAndGetId(username, password);
 
     if (crdencial !== undefined) {
       res.status(200).json({ id: crdencial, message: "coincidencias" });

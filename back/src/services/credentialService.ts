@@ -16,19 +16,48 @@ export const createCredentials = async (username: string, password: string) => {
   return rsulCrt.id;
 };
 // Función para validar las credenciales
-export const validarCredentials = async (
+// export const validarCredentials = async (
+//   username: string,
+//   password: string
+// ): Promise<number | undefined> => {
+//   try {
+//     // Buscar las credenciales en la base de datos
+//     const foundCredential = await AppDataSource.getRepository(
+//       Credential
+//     ).findOne({
+//       where: {
+//         username,
+//       },
+//     });
+
+//     // Verificar si se encontraron las credenciales y si la contraseña es correcta
+//     if (foundCredential && foundCredential.password === password) {
+//       return foundCredential.id; // Retorna el ID del par de credenciales si las credenciales son válidas
+//     } else {
+//       return undefined; // Retorna 'undefined' si las credenciales no son válidas
+//     }
+//   } catch (error) {
+//     console.error("Error al validar las credenciales y obtener el ID:", error);
+//     throw error;
+//   }
+// };
+//
+export async function validateCredentialsAndGetId(
   username: string,
   password: string
-): Promise<number | undefined> => {
+): Promise<number | undefined> {
   try {
-    // Buscar las credenciales en la base de datos
-    const foundCredential = await AppDataSource.getRepository(
-      Credential
-    ).findOne({
+    // Obtener el repositorio de la entidad Credential
+    const credentialRepository = AppDataSource.getRepository(Credential);
+
+    // Buscar las credenciales por nombre de usuario en la base de datos
+    const foundCredential = await credentialRepository.findOne({
       where: {
         username,
       },
     });
+
+    console.log(foundCredential?.password, password);
 
     // Verificar si se encontraron las credenciales y si la contraseña es correcta
     if (foundCredential && foundCredential.password === password) {
@@ -37,50 +66,8 @@ export const validarCredentials = async (
       return undefined; // Retorna 'undefined' si las credenciales no son válidas
     }
   } catch (error) {
-    console.error("Error al validar las credenciales y obtener el ID:", error);
+    // Manejar errores, si los hay
+    console.error("Error al validar las credenciales:", error);
     throw error;
   }
-};
-//   const appDataCredential = AppDataSource.getRepository(Credential);
-
-//   const foundCredential = appDataCredential.findOne({
-//     where: {
-//       username,
-//     },
-//   });
-
-//   if (foundCredential && foundCredential.password === password) {
-//     return foundCredential.id;
-//   } else {
-//     throw new Error("Credenciales no válidas");
-//   }
-// };
-// export async function validarUsuarioPorNombre(
-//   username: string
-// ): Promise<Credential | undefined> {
-//   try {
-//     const user = credentials.find(
-//       (credential) => credential.username === username
-//     );
-//     return user;
-//   } catch (error) {
-//     console.error("Error al buscar el usuario por nombre de usuario:", error);
-//     throw error;
-//   }
-// }
-// export async function validarContrasena(
-//   username: string,
-//   password: string
-// ): Promise<boolean> {
-//   try {
-//     const user = await validarUsuarioPorNombre(username);
-//     if (user && user.password === password) {
-//       return true; // La contraseña es válida
-//     } else {
-//       return false; // La contraseña no es válida
-//     }
-//   } catch (error) {
-//     console.error("Error al validar la contraseña del usuario:", error);
-//     throw error;
-//   }
-// }
+}

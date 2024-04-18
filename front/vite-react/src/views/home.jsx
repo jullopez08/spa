@@ -1,5 +1,5 @@
-import React from 'react';
-import Navbar from './Navbar'; // Importa el componente Navbar
+import React from "react";
+import Navbar from "../components/Navbar"; // Importa el componente Navbar
 
 const Home = () => {
   return (
@@ -9,6 +9,6 @@ const Home = () => {
       <p>Esta es la página de inicio de nuestra aplicación.</p>
     </div>
   );
-}
+};
 
-export default Home;
+export default Home;

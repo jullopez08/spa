@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { loginUser } from "../helpers/userActions";
+import Navbar from "../components/Navbar";
+// import "../styles/loginForms.css";
+
 const Login = () => {
-  // Estado local para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
 
-  // Estado local para almacenar el mensaje de error
-  const [error] = useState("");
+  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
 
-  // Función para manejar cambios en los inputs del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -20,30 +22,28 @@ const Login = () => {
     });
   };
 
-  // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Realizar la petición POST al servidor para el login
       const response = await axios.post(
         "http://localhost:3000/users/login",
         formData
       );
-      alert("Se ha iniciado seccion!");
-      console.log(response.data); // Aquí puedes manejar la respuesta del servidor, como redireccionar al usuario a otra página
-      navigator("/home"); // Mensaje de error si las credenciales son incorrectas
+      dispatch(loginUser(response.data));
+      setMessage("¡Inicio de sesión exitoso!");
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
-      alert("¡Oops! Nombre de usuario o contraseña incorrectos."); // Mensaje de error si las credenciales son incorrectas
+      setMessage("¡Oops! Ha ocurrido un error.");
     }
   };
 
   return (
-    <div>
+    <div className="login-container">
+      <Navbar />
       <h1>Iniciar Sesión</h1>
-      {error && <p>{error}</p>} {/* Mostrar mensaje de error */}
+      {message && <p className="message">{message}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="username">Nombre de Usuario:</label>
           <input
             type="text"
@@ -54,7 +54,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
@@ -65,7 +65,9 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit" className="submit-btn">
+          Iniciar Sesión
+        </button>
       </form>
     </div>
   );
