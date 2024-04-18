@@ -1,15 +1,24 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav>
       <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/about">Acerca de</a></li>
-        <li><a href="/contact">Contacto</a></li>
+        <li>
+          <Link to="/">Inicio</Link>
+        </li>
+        <li>
+          <Link to="/register">Registrarse</Link>
+        </li>
+        <li>
+          <Link to="/login">Iniciar sesión</Link>
+        </li>
+        <li>
+          <Link to="/turnos">Mis turnos</Link>
+        </li>
       </ul>
     </nav>
   );
-}
-
-export default Navbar;
+};
+export default Navbar;
