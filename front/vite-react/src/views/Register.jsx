@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import "../styles/registro.css"; // Importa el archivo de estilos
 
 const Register = () => {
   // Estado local para almacenar los datos del formulario
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    birthdate: '',
-    nDni: '',
-    username: '',
-    password: ''
+    name: "",
+    email: "",
+    birthdate: "",
+    nDni: "",
+    username: "",
+    password: "",
   });
 
   // Estado local para almacenar el mensaje de éxito o error
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   // Función para manejar cambios en los inputs del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -29,20 +30,24 @@ const Register = () => {
     e.preventDefault();
     try {
       // Realizar la petición POST al servidor
-      const response = await axios.post('http://localhost:3000/users/register', formData);
-      setMessage('¡Registro exitoso!'); // Mensaje de éxito
+      const response = await axios.post(
+        "http://localhost:3000/users",
+        formData
+      );
+      setMessage("¡Registro exitoso!"); // Mensaje de éxito
     } catch (error) {
-      console.error('Error al enviar el formulario:', error);
-      setMessage('¡Oops! Ha ocurrido un error.'); // Mensaje de error
+      console.error("Error al enviar el formulario:", error);
+      setMessage("¡Oops! Ha ocurrido un error."); // Mensaje de error
     }
   };
 
   return (
-    <div>
-      <h1>Registro</h1>
-      {message && <p>{message}</p>} {/* Mostrar mensaje de éxito o error */}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="register-form">
+      <h1 className="title">Registro</h1>
+      {message && <p className="message">{message}</p>}{" "}
+      {/* Mostrar mensaje de éxito o error */}
+      <form onSubmit={handleSubmit} className="form">
+        <div className="form-group">
           <label htmlFor="name">Nombre:</label>
           <input
             type="text"
@@ -53,7 +58,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Correo Electrónico:</label>
           <input
             type="email"
@@ -64,7 +69,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="birthdate">Fecha de Nacimiento:</label>
           <input
             type="date"
@@ -75,7 +80,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="nDni">Número de DNI:</label>
           <input
             type="text"
@@ -86,7 +91,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="username">Nombre de Usuario:</label>
           <input
             type="text"
@@ -97,7 +102,7 @@ const Register = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
@@ -108,10 +113,12 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Registrarse</button>
+        <button type="submit" className="submit-btn">
+          Registrarse
+        </button>
       </form>
     </div>
   );
-}
+};
 
-export default Register;
+export default Register;

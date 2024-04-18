@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import "../styles/crearTurno.css"; // Importa el archivo de estilos
+import "../styles/crearturno.css"; // Importa el archivo de estilos
 
 const CrearTurno = () => {
   const user = useSelector((state) => state.user);

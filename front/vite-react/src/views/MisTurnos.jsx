@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setUserAppointments } from "../helpers/userActions"; // Importa la acción setUserAppointments
-// import "../styles/misTurnos.css"; // Importa el archivo de estilos
+import "../styles/misturnos.css"; // Importa el archivo de estilos
 
 const MisTurnos = () => {
   const user = useSelector((state) => state.user);

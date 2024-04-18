@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { loginUser } from "../helpers/userActions";
 import Navbar from "../components/Navbar";
-// import "../styles/loginForms.css";
+import "../styles/login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
