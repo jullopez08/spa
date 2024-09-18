@@ -1,47 +1,83 @@
-.title{
-    color: #fff;
-    margin-top: -30px;
-
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.register-form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1250px;
-    flex-direction: column;
-    margin-top: 20px;
-
+.title {
+  color: #fff;
+  margin-top: -30px;
 }
 
-.form {
-    width: 500px; /* Ancho máximo del formulario */
-    margin: auto; /* Centra el formulario en la página */
-    padding: 20px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde del formulario */
-    border-radius: 5px; /* Bordes redondeados */
-    height: 450px;
-    overflow: scroll;
-    
-  }
-  
-  .form-group {
-    margin-bottom: 15px; /* Espaciado entre grupos de campos */
-  }
-  
-  .form-group label {
-    display: block; /* Muestra las etiquetas en bloque */
-    margin-bottom: 5px; /* Espaciado inferior de las etiquetas */
-    color: #000;
-  }
-  
-  .form-group input {
-    width: 100%; /* Ancho completo del campo de entrada */
-    padding: 10px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde del campo de entrada */
-    border-radius: 5px; /* Bordes redondeados */
-    box-sizing: border-box; /* Incluye el padding en el ancho */
-  }
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #95d9be; /* Background color */
+  color: #000;
+}
+
+.general {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%; /* Ensure the general container spans full width */
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #95d9be;
+}
+
+.general h2 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%; /* Full width of the input field */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
 .submit-btn {
-    color: #fff;
+  background-color: #075850; /* Button background */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #06443d; /* Darker hover effect */
 }

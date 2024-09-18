@@ -38,37 +38,42 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <Navbar />
+    <div className="general">
       <h1>Iniciar Sesión</h1>
-      {message && <p className="message">{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Nombre de Usuario:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="submit-btn">
-          Iniciar Sesión
-        </button>
-      </form>
+      <div className="login-container">
+        <Navbar />
+
+        {message && <p className="message">{message}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Nombre de Usuario:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Contraseña:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="btn-container">
+            <button type="submit" className="submit-btn">
+              Iniciar Sesión
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

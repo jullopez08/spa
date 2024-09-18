@@ -43,82 +43,86 @@ const Register = () => {
   };
 
   return (
-    <div className="register-form">
-      <Navbar />
+    <div className="general">
       <h2 className="title">Registro</h2>
-      {message && <p className="message">{message}</p>}{" "}
-      {/* Mostrar mensaje de éxito o error */}
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <label htmlFor="name">Nombre:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="birthdate">Fecha de Nacimiento:</label>
-          <input
-            type="date"
-            id="birthdate"
-            name="birthdate"
-            value={formData.birthdate}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="nDni">Número de DNI:</label>
-          <input
-            type="text"
-            id="nDni"
-            name="nDni"
-            value={formData.nDni}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="username">Nombre de Usuario:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="submit-btn">
-          Registrarse
-        </button>
-      </form>
+      <div className="register-form">
+        <Navbar />
+        {message && <p className="message">{message}</p>}{" "}
+        {/* Mostrar mensaje de éxito o error */}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Nombre:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Correo Electrónico:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="birthdate">Fecha de Nacimiento:</label>
+            <input
+              type="date"
+              id="birthdate"
+              name="birthdate"
+              value={formData.birthdate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="nDni">Número de DNI:</label>
+            <input
+              type="text"
+              id="nDni"
+              name="nDni"
+              value={formData.nDni}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="username">Nombre de Usuario:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Contraseña:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="btn-container">
+            <button type="submit" className="submit-btn">
+              Registrarse
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
